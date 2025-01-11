@@ -9,21 +9,34 @@ import UIKit
 
 class LabelsTutorialViewController: UIViewController {
 
+    private var textLabel =  UILabel()
+    
+    private var subtitleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Super awesome programmatic UI!"
+        label.textColor = .gray
+        
+        return label
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        textLabel.text = "Hello World!"
+        textLabel.font = .boldSystemFont(ofSize: 20)
+        
+        view.addSubview(textLabel)
+        textLabel.translatesAutoresizingMaskIntoConstraints = false
+        textLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        textLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
+        view.addSubview(subtitleLabel)
+        subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        subtitleLabel.topAnchor.constraint(equalTo: textLabel.bottomAnchor, constant: 8).isActive = true
+        subtitleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     }
-    
+}
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+#Preview {
+    return LabelsTutorialViewController()
 }
