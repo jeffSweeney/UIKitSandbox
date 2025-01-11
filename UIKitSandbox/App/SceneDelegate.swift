@@ -19,9 +19,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
   
         // TODO: Set prefered VC here
-//        window = UIWindow(windowScene: windowScene)
-//        window?.rootViewController = TextFieldTutorialViewController()
-//        window?.makeKeyAndVisible()
+        window = UIWindow(windowScene: windowScene)
+        window?.rootViewController = TextFieldTutorialViewController()
+        window?.makeKeyAndVisible()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

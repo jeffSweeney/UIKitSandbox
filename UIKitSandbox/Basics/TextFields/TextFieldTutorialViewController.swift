@@ -32,6 +32,29 @@ class TextFieldTutorialViewController: UIViewController {
         textField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         textField.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         textField.widthAnchor.constraint(equalToConstant: view.frame.width - 64).isActive = true
+        textField.delegate = self
+        textField.addTarget(self, action: #selector(onEditingChange), for: .editingChanged)
+    }
+    
+    // Awesome for things like search results as changes happen.
+    @objc func onEditingChange(_ sender: UITextField) {
+        print("DEBUG: Text field text is \(sender.text ?? "empty")")
+    }
+}
+
+extension TextFieldTutorialViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        print("DEBUG: RETURN KEY TAPPED")
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        print("DEBUG: DID BEGIN EDITING")
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        print("DEBUG: DID END EDITING")
     }
 }
 
