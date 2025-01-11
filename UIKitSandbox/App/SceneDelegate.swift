@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   
         // TODO: Set prefered VC here
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = CollectionTutorialViewController()
+        window?.rootViewController = UINavigationController(rootViewController: NavigationTutorialViewController())
         window?.makeKeyAndVisible()
     }
 
