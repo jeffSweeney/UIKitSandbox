@@ -8,12 +8,23 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    @IBOutlet weak var greetingLabel: UILabel!
+    @IBOutlet weak var primaryButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        greetingLabel.textAlignment = .center
+        greetUser(name: "World")
     }
-
-
+    
+    func greetUser(name: String) {
+        greetingLabel.text = "Hello, \(name)!"
+    }
+    
+    @IBAction func primaryButtonTapped(_ sender: Any) {
+        greetUser(name: "Jeff")
+    }
 }
 
