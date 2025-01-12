@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   
         // TODO: Set prefered VC here
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = UINavigationController(rootViewController: NavigationTutorialViewController())
+        window?.rootViewController = UINavigationController(rootViewController: CoinPricesViewController())
         window?.makeKeyAndVisible()
     }
 
