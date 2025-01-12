@@ -65,8 +65,9 @@ class CoinTableViewCell: UITableViewCell {
         coinRankLabel.text = "\(coin.marketCapRank)"
         coinNameLabel.text = coin.name
         coinSymbolLabel.text = coin.symbol
-        coinPriceLabel.text = "\(coin.currentPrice)"
-        coinPercentChangeLabel.text = "\(coin.priceChangePercentage24H)"
+        coinPriceLabel.text = coin.currentPrice.asCryptoPrice
+        coinPercentChangeLabel.text = coin.priceChangePercentage24H.asCryptoPercentage
+        coinPercentChangeLabel.textColor = coin.priceChangePercentage24H < 0 ? .systemRed : .systemGreen
     }
  
     func configureLayout() {
@@ -103,20 +104,4 @@ class CoinTableViewCell: UITableViewCell {
         priceStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16).isActive = true
         priceStack.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
     }
-}
-
-// MARK: - MOCK DATA HELPER
-extension CoinTableViewCell {
-    func setupMockData() {
-        coinRankLabel.text = "1"
-        coinImageView.image = UIImage(systemName: "dollarsign.circle")
-        coinNameLabel.text = "Dollarcoin"
-        coinSymbolLabel.text = "DOLC"
-        coinPriceLabel.text = "$123.45"
-        coinPercentChangeLabel.text = "+1.23%"
-    }
-}
-
-#Preview {
-    CoinTableViewCell()
 }

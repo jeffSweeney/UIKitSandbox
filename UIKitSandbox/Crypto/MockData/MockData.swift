@@ -8,6 +8,12 @@
 import Foundation
 
 struct MockData {
+    static let bitcoin: Coin = {
+        let coin = try! JSONDecoder().decode([Coin].self, from: Self.mockCoinsJSON).first!
+        
+        return coin
+    }()
+    
     static let mockCoinsJSON =
     """
     [
