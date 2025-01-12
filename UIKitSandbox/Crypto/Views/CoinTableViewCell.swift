@@ -6,8 +6,10 @@
 //
 
 import UIKit
+import Kingfisher
 
 class CoinTableViewCell: UITableViewCell {
+    
     private let coinRankLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14)
@@ -49,12 +51,22 @@ class CoinTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        setupMockData()
         configureLayout()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func configure(coin: Coin) {
+        let url = URL(string: coin.image)
+        coinImageView.kf.setImage(with: url)
+        
+        coinRankLabel.text = "\(coin.marketCapRank)"
+        coinNameLabel.text = coin.name
+        coinSymbolLabel.text = coin.symbol
+        coinPriceLabel.text = "\(coin.currentPrice)"
+        coinPercentChangeLabel.text = "\(coin.priceChangePercentage24H)"
     }
  
     func configureLayout() {
@@ -62,6 +74,7 @@ class CoinTableViewCell: UITableViewCell {
         coinRankLabel.translatesAutoresizingMaskIntoConstraints = false
         coinRankLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16).isActive = true
         coinRankLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        coinRankLabel.widthAnchor.constraint(equalToConstant: 20).isActive = true
         
         contentView.addSubview(coinImageView)
         coinImageView.translatesAutoresizingMaskIntoConstraints = false

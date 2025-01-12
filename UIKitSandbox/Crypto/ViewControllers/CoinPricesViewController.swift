@@ -37,6 +37,7 @@ class CoinPricesViewController: UIViewController {
     func fetchCoins() async {
         do {
             coins = try await service.fetchCoins()
+            tableView.reloadData()
             print("DEBIG: Coins count \(coins.count)")
         } catch {
             print("DEBUG: Failed to fetch coins: \(error.localizedDescription)")
@@ -46,11 +47,13 @@ class CoinPricesViewController: UIViewController {
 
 extension CoinPricesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return coins.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! CoinTableViewCell
+        cell.configure(coin: coins[indexPath.row])
+        
         return cell
     }
     
